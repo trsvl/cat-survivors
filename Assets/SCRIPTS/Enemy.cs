@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 1;
+    public float health = 1;
     private Transform player;
     public float despawnDistance = 10f;
     public GameObject exp;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
 
