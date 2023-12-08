@@ -16,8 +16,6 @@ public class WeaponController : MonoBehaviour
     {
         charMovement = FindObjectOfType<PlayerMovement>();
         currentCooldown = weaponData.cooldown;
-       // Destroy(gameObject, lifeTime);
-       // GetComponent<Rigidbody2D>().velocity = direction.normalized * speedProjectile;
     }
 
 
@@ -36,22 +34,6 @@ public class WeaponController : MonoBehaviour
     }
 
 
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Enemy")
-    //    {
-
-    //        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-
-    //        if (enemy != null)
-    //        {
-    //            Destroy(gameObject);
-    //            enemy.TakeDamage(damage);
-
-    //        }
-    //    }
-    //}
 
 
 

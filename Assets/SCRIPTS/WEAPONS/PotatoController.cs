@@ -7,7 +7,6 @@ public class PotatoController : WeaponController
     {
         base.Start();
     }
-   
     protected override void Attack()
     {
         base.Attack();
@@ -15,21 +14,4 @@ public class PotatoController : WeaponController
         potato.transform.position = transform.position; //asign pos of weapon to player
         potato.GetComponent<PotatoProjectile>().DirectionChecker(charMovement.lastVector);
     }
-
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Enemy")
-    //    {
-
-    //        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-
-    //        if (enemy != null)
-    //        {
-    //            Destroy(weaponData.prefab);
-    //            enemy.TakeDamage(weaponData.damage);
-
-    //        }
-    //    }
-    //}
-
 }

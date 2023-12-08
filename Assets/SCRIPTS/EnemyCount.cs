@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class EnemyCount : MonoBehaviour
 {
-    private int enemyCount = 0;
+    int enemyCount;
     public Text counterText;
 
     public static object Instance { get; internal set; }
@@ -14,7 +14,8 @@ public class EnemyCount : MonoBehaviour
     }
     public void UpdateEnemyCount(int amount)
     {
-        enemyCount += amount;
+        Spawner es = FindObjectOfType<Spawner>();
+        enemyCount = es.enemiesAlive;
         counterText.text = "Enemy count: " + enemyCount;
     }
 }

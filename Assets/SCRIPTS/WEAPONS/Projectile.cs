@@ -72,7 +72,7 @@ public class Projectile : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            Enemy enemy = col.GetComponent<Enemy>();
+            EnemyController enemy = col.GetComponent<EnemyController>();
             enemy.TakeDamage(weaponData.damage);
             ReducePierce();
         }
