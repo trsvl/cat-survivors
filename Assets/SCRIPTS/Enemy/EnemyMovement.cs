@@ -11,8 +11,5 @@ public class EnemyMovement : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>().transform;
     }
-    void Update()
-    {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
-    }
+   
 }

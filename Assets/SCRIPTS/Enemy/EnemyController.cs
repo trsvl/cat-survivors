@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
         {
             //Instantiate(exp, transform.position, Quaternion.identity);        !!!!!!!!!!!!!!!!!
             Destroy(gameObject);
+            Spawner es = FindObjectOfType<Spawner>();
+            es.OnEnemyKilled();
         }
         else
         {
@@ -58,11 +60,6 @@ public class EnemyController : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
-    private void OnDestroy()
-    {
-        Spawner es = FindObjectOfType<Spawner>();
-        es.OnEnemyKilled();
-    }
 
     void ReturnEnemy()
     {

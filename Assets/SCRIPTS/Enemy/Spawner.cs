@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     public class Wave
     {
         public string waveName;
-        public List <EnemyGroup> emeGroups;
+        public List <EnemyGroup> enemyGroups;
         public int waveQuota; //total number of enemies to spawn in this wave
         public float spawnInterval;
         public int spawnCount; //already spawned
@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         CalculateWaveQuota();
-       // SpawnEnemies(); !!!!!!!!!!
+        // SpawnEnemies();
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
         }
 
 
-        spawnTimer = Time.deltaTime;
+        spawnTimer += Time.deltaTime;
 
         //Check if it`s time to spawn the next enemy
         if (spawnTimer >= waves[currentWaveCount].spawnInterval)
@@ -78,7 +78,7 @@ public class Spawner : MonoBehaviour
     void CalculateWaveQuota()
     {
         int currentWaveQuota = 0;
-        foreach (var enemyGroup in waves[currentWaveCount].emeGroups)
+        foreach (var enemyGroup in waves[currentWaveCount].enemyGroups)
         {
             currentWaveQuota += enemyGroup.enemyCount;
         }
@@ -92,7 +92,7 @@ public class Spawner : MonoBehaviour
         if (waves[currentWaveCount].spawnCount < waves[currentWaveCount].waveQuota && !maxEnemiesReached)
         {
             //Spawn each type of enemy until the quota is filled
-            foreach (var enemyGroup in waves[currentWaveCount].emeGroups)
+            foreach (var enemyGroup in waves[currentWaveCount].enemyGroups)
             {
                 //Check if the minimum number of enemies of this have been spawned
                 if (enemyGroup.spawnCount < enemyGroup.enemyCount)
@@ -104,7 +104,7 @@ public class Spawner : MonoBehaviour
                     }
 
                     //Spawn the enemies in random position close to player
-                    Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
+                   // Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
 
                     Vector2 spawnPosition = new Vector2(player.transform.position.x + Random.Range(-10f,10f), player.transform.position.y + Random.Range(-10f, 10f));
                     Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
