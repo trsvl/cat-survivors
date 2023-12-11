@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4843933625492857175}
   - component: {fileID: 3554856656272810822}
   m_Layer: 9
-  m_Name: Experience
+  m_Name: Experience1
   m_TagString: Experience
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f06566ee9d3114e83bf81cd7166451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberExp: 1

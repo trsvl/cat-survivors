@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Experience : MonoBehaviour
 {
-
+    public int numberExp;
     public void PickUpExp(bool taken)
     {
 
@@ -15,7 +15,7 @@ public class Experience : MonoBehaviour
 
             if (exp != null)
             {
-                exp.UpdateExpCount(1);
+                exp.UpdateExpCount(numberExp);
             }
         }
     }

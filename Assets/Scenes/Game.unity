@@ -1668,15 +1668,19 @@ MonoBehaviour:
   - waveName: Small cats
     enemyGroups:
     - enemyName: Cat
-      enemyCount: 100
+      enemyCount: 50
       spawnCount: 0
       enemyPrefab: {fileID: 5916292347922115300, guid: 521bbb1fe7d3c0f45b153e7fa7ae5afb, type: 3}
+    - enemyName: Cat1
+      enemyCount: 50
+      spawnCount: 0
+      enemyPrefab: {fileID: 5916292347922115300, guid: 66e4a283051cae14a91c5584224a5afa, type: 3}
     waveQuota: 0
     spawnInterval: 3
     spawnCount: 0
   currentWaveCount: 0
   enemiesAlive: 0
-  maxEnemiesAllowed: 5
+  maxEnemiesAllowed: 10
   maxEnemiesReached: 0
   waveIntreval: 3
   relativeSpawnPoints:

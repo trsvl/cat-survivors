@@ -6,26 +6,20 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     Transform player;
-    GameObject exp;
     SpriteRenderer spriteRenderer;
     public EnemyScriptableObject enemy;
     float localHealth;
 
-    /// <summary>
-    public float despawnDistance = 20f;
-
-    /// </summary>
     protected virtual void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        exp = GameObject.FindGameObjectWithTag("Experience");
         localHealth = enemy.health;
     }
 
     protected virtual void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) >= despawnDistance)
+        if (Vector2.Distance(transform.position, player.position) >= enemy.despawnDistance)
         {
             ReturnEnemy();
         }
@@ -39,7 +33,7 @@ public class EnemyController : MonoBehaviour
 
         if (localHealth <= 0)
         {
-            //Instantiate(exp, transform.position, Quaternion.identity);        !!!!!!!!!!!!!!!!!
+            Instantiate(enemy.expPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
             Spawner es = FindObjectOfType<Spawner>();
             es.OnEnemyKilled();

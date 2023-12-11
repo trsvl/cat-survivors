@@ -36,7 +36,6 @@ public class BubbleMelee : Melee
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
         {
             markedEnemies.Add(col.gameObject);
-            Debug.Log(markedEnemies);
             EnemyController enemy = col.GetComponent<EnemyController>();
             enemy.TakeDamage(weaponData.damage);
         }
