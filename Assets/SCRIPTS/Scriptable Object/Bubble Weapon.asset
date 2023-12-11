@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b54e66ec6bcaa4cb2b63c8124569ac, type: 3}
-  m_Name: SmallCat
+  m_Script: {fileID: 11500000, guid: 953d3a5121894e3429bc8e3ebf9f197c, type: 3}
+  m_Name: Bubble Weapon
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4617772483547746003, guid: 28f819b3460532347ad1818fb40a6352, type: 3}
   damage: 1
-  health: 5
-  moveSpeed: 2
-  despawnDistance: 10
+  cooldown: 7
+  speed: 0
+  pierce: 0
