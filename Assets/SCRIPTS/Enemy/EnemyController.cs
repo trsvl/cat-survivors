@@ -9,12 +9,18 @@ public class EnemyController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public EnemyScriptableObject enemy;
     float localHealth;
+    bool isDamaged = false;
+    Color originalColor;
 
+    float damageTimer = 0f;
+    float damageDuration = 0.2f;
     protected virtual void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         localHealth = enemy.health;
+
+        originalColor = spriteRenderer.color;
     }
 
     protected virtual void Update()
@@ -22,6 +28,17 @@ public class EnemyController : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) >= enemy.despawnDistance)
         {
             ReturnEnemy();
+        }
+        if (isDamaged)
+        {
+            damageTimer += Time.deltaTime;
+
+            if (damageTimer >= damageDuration)
+            {
+                spriteRenderer.color = originalColor;
+                isDamaged = false;
+                damageTimer = 0f; 
+            }
         }
 
          transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
@@ -40,20 +57,10 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FlashWhite());
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+            isDamaged = true;
         }
     }
-
-     IEnumerator FlashWhite()
-    {
-        Color originalColor = spriteRenderer.color;
-        spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-
-        yield return new WaitForSeconds(0.1f);
-
-        spriteRenderer.color = originalColor;
-    }
-
 
     void ReturnEnemy()
     {
