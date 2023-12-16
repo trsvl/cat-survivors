@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ExpPickUp : MonoBehaviour
 {
-private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.TryGetComponent<Experience>(out Experience CountExperience))
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-            CountExperience.PickUpExp(true);
+        if (collision.gameObject.CompareTag("Experience"))
+        {
+            Experience exp = collision.gameObject.GetComponent<Experience>();
+                exp.PickUpExp(true);
+        }
     }
-}
 
 }

@@ -10,8 +10,6 @@ public class WeaponController : MonoBehaviour
 
     protected PlayerMovement charMovement;
 
-    public int level = 0;
-
     protected virtual void Start()
     {
         charMovement = FindObjectOfType<PlayerMovement>();
@@ -21,11 +19,15 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Update()
     {
-        currentCooldown -= Time.deltaTime;
-        if (currentCooldown < 0f)
+        if (weaponData.level > 0)
         {
-            Attack();
+            currentCooldown -= Time.deltaTime;
+            if (currentCooldown < 0f)
+            {
+                Attack();
+            }
         }
+       
     }
 
     protected virtual void Attack()

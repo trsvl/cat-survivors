@@ -58,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+  
+
     void Move()
     {
         rb.velocity = new Vector2 (moveDir.x * moveSpeed, moveDir.y * moveSpeed);

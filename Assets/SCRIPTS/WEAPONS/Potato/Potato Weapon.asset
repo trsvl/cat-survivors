@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Potato Weapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 415237193920528935, guid: 13911c8e7fd0b064c9d12223f8523d58, type: 3}
-  damage: 1
-  cooldown: 2
+  damage: 5
+  cooldown: 1
   speed: 8
   pierce: 2
+  level: 5

@@ -3,11 +3,9 @@ using UnityEngine.UI;
 
 public class CountExperience : MonoBehaviour
 {
-    private int expCount = 0;
-    private int expMax = 6;
+    public int expCount = 0;
+    public int expMax = 1;
     public Text counterText;
-
-    public static object Instance { get; internal set; }
 
     void Start()
     {
@@ -19,8 +17,27 @@ public class CountExperience : MonoBehaviour
         expCount += amount;
         if (expCount >= expMax)
         {
-            expCount = 0;
-            expMax += 2;
+            expCount -= expMax;
+           // expMax += 2;
+            CountLevel lvl = FindObjectOfType<CountLevel>();
+
+            if (lvl != null)
+            {
+                lvl.UpdateLvlCount();
+            }
+            SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
+            skillsWeaponsManager.FillImagesWithRandomSprites();
+        }
+        counterText.text = "Exp: " + expCount + "/" + expMax;
+
+        
+    }
+    public void AgainUpdateExpCount()
+    {
+        if (expCount >= expMax)
+        {
+            expCount -= expMax;
+            // expMax += 2;
             CountLevel lvl = FindObjectOfType<CountLevel>();
 
             if (lvl != null)
@@ -29,5 +46,9 @@ public class CountExperience : MonoBehaviour
             }
         }
         counterText.text = "Exp: " + expCount + "/" + expMax;
+
+        SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
+        skillsWeaponsManager.FillImagesWithRandomSprites();
     }
+
 }

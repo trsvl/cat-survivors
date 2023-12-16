@@ -17,3 +17,5 @@ MonoBehaviour:
   cooldown: 6
   speed: 0
   pierce: 0
+  level: 9
+  index: 2
