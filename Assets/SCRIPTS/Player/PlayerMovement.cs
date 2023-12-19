@@ -55,15 +55,14 @@ public class PlayerMovement : MonoBehaviour
         {
             lastVector = new Vector2(lastHorizontalVector, lastVerticalVector);
         }
-
     }
 
   
 
     void Move()
     {
-        rb.velocity = new Vector2 (moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
     }
-   
+
 
 }
