@@ -1,35 +1,76 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class BonedProjectile: Projectile
+public class BoneProjectile : Projectile
 {
     Rigidbody2D rb;
-    
+    PlayerMovement player;
+    SpriteRenderer spriteRenderer;
+    BoneController controller;
+
+    float timer = 0f;
+    float randomVelocityX;
+
+    private void Awake()
+    {
+        controller = FindObjectOfType<BoneController>();
+        weaponData = controller.weaponData;
+    }
     protected override void Start()
     {
         base.Start();
 
         rb = GetComponent<Rigidbody2D>();
-        PlayerMovement player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<PlayerMovement>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        randomVelocityX = Random.Range(-3f, 3f);
+        float randomVelocityY = Random.Range(6f, 10f);
 
-        float randomVelocity = Random.Range(-8f, 8f);
+        rb.velocity = new Vector2(randomVelocityX, randomVelocityY);
+        rb.gravityScale = 2;
 
-        rb.velocity = new Vector2(randomVelocity, 8f);
-
-
+        if (randomVelocityX < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        ChangeLocalScale(2, 1.1f);
+        ChangeLocalScale(3, 1.3f);
+        ChangeLocalScale(4, 1.5f);
+        ChangeLocalScale(5, 2f);
     }
-
-    private void FixedUpdate()
+    void ChangeLocalScale(int lvl, float value)
     {
-        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.down * (weaponData.speed * 2f), Time.deltaTime);
+        if (weaponData.level == lvl)
+        {
+            transform.localScale = transform.localScale * value;
+        }
     }
 
-    protected override void OnTriggerEnter2D(Collider2D col)
+    private void Update()
     {
-        base.OnTriggerEnter2D(col);
-    }
-   
+        timer += Time.deltaTime;
 
+        if (player.moveDir.y < 0)
+        {
+            rb.gravityScale = 2;
+        }
+        if (player.moveDir.y > 0)
+        {
+            rb.gravityScale = 0;
+        }
+
+        if (timer > 0.5f)
+        {
+            rb.gravityScale = 2;
+        }
+
+        if (randomVelocityX < 0)
+        {
+            rb.AddTorque(180f * Time.deltaTime);
+        }
+        if (randomVelocityX > 0)
+        {
+            rb.AddTorque(-180f * Time.deltaTime);
+        }
+    }
 }

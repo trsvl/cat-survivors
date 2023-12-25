@@ -173,4 +173,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterSec: 3
   weaponData: {fileID: 11400000, guid: d2e56e4c417b9be47a0595cfcb27e3d8, type: 2}
-  gravityScale: 5

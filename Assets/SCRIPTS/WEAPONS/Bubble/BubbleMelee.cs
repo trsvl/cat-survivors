@@ -11,11 +11,30 @@ public class BubbleMelee : Melee
     float damageInterval = 1f;
     float damageTimer = 0f;
 
+    BubbleController controller;
+
+
+    private void Awake()
+    {
+        controller = FindObjectOfType<BubbleController>();
+        weaponData = controller.weaponData;
+    }
     protected override void Start()
     {
         base.Start();
         markedEnemies = new List<GameObject>();
         playerMovement = FindObjectOfType <PlayerMovement>();
+        ChangeLocalScale(2, 1.2f);
+        ChangeLocalScale(3, 1.5f);
+        ChangeLocalScale(4, 2f);
+        ChangeLocalScale(5, 3f);
+    }
+    void ChangeLocalScale(int lvl, float value)
+    {
+        if (weaponData.level == lvl)
+        {
+            transform.localScale = transform.localScale * value;
+        }
     }
 
     void Update()

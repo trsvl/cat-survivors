@@ -528,7 +528,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 334120509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 831435016}
+        m_TargetAssemblyTypeName: RestartManager, Assembly-CSharp
+        m_MethodName: RestartClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &334120509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,6 +1516,7 @@ GameObject:
   - component: {fileID: 831435014}
   - component: {fileID: 831435013}
   - component: {fileID: 831435012}
+  - component: {fileID: 831435016}
   m_Layer: 5
   m_Name: Pop up Restart
   m_TagString: Untagged
@@ -1597,6 +1610,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &831435016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831435011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c464517171b1dcb42a77930b9fc24608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &889719703 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7510109622249903083, guid: dbaa61def11ce5a45a53124123fc0b85, type: 3}
@@ -1652,7 +1677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42e0635a08cd294d92cfe3d2c16186f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: a761759125914894ba4789baeac66aac, type: 2}
+  weapon: {fileID: 11400000, guid: a761759125914894ba4789baeac66aac, type: 2}
+  weaponData: {fileID: 0}
+  count: 0
 --- !u!1 &903323542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,11 +2201,7 @@ MonoBehaviour:
   - {fileID: 1007362518}
   - {fileID: 757746948}
   - {fileID: 1101541300}
-  weapons:
-  - {fileID: 11400000, guid: a859e551897bccb4d9deecfb5cee4021, type: 2}
-  - {fileID: 11400000, guid: d2e56e4c417b9be47a0595cfcb27e3d8, type: 2}
-  - {fileID: 11400000, guid: d3d94f0afacbd8e4eab522ca3f2dd66c, type: 2}
-  - {fileID: 11400000, guid: a761759125914894ba4789baeac66aac, type: 2}
+  weapons: []
   buttons:
   - {fileID: 889719703}
   - {fileID: 989943046}
@@ -2401,7 +2424,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1098765917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 831435016}
+        m_TargetAssemblyTypeName: RestartManager, Assembly-CSharp
+        m_MethodName: MainMenuClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main Menu
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1098765917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2495,7 +2530,7 @@ MonoBehaviour:
   - waveName: Small cats
     enemyGroups:
     - enemyName: Cat
-      enemyCount: 3
+      enemyCount: 50
       spawnCount: 0
       enemyPrefab: {fileID: 5916292347922115300, guid: 521bbb1fe7d3c0f45b153e7fa7ae5afb, type: 3}
     waveQuota: 0
@@ -2590,7 +2625,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fdf805bd5ee534996545f1a49f4ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: d2e56e4c417b9be47a0595cfcb27e3d8, type: 2}
+  weapon: {fileID: 11400000, guid: d2e56e4c417b9be47a0595cfcb27e3d8, type: 2}
+  weaponData: {fileID: 0}
+  count: 0
 --- !u!1 &1303697783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,7 +2989,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df0521ab22bfd243b880ad6cc8becd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: d3d94f0afacbd8e4eab522ca3f2dd66c, type: 2}
+  weapon: {fileID: 11400000, guid: d3d94f0afacbd8e4eab522ca3f2dd66c, type: 2}
+  weaponData: {fileID: 0}
+  count: 0
 --- !u!1 &1356498440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,7 +3508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c7b0f0a4aa2af41a616655129ed820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: a859e551897bccb4d9deecfb5cee4021, type: 2}
+  weapon: {fileID: 11400000, guid: a859e551897bccb4d9deecfb5cee4021, type: 2}
+  weaponData: {fileID: 0}
+  count: 0
 --- !u!224 &1524489020 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7976121032375861699, guid: 77157a30f26204b47b9d2edabfb08517, type: 3}
@@ -4782,7 +4823,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.64, y: 1.08}
+  m_Size: {x: 1.2872994, y: 1.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

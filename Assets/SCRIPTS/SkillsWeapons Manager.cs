@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,22 +10,17 @@ public class SkillsWeaponsManager : MonoBehaviour
     public Image[] emptyImages;
     public Image[] emptyImagesBG;
     public Image[] emptySuggestedImages;
-    public WeaponScriptableObject[] weapons;
+    [HideInInspector]
+    public List<WeaponScriptableObject> weapons;
     public Button[] buttons;
     public RectTransform groupButtons;
     public Sprite[] imagesNoWeapons;
-
     WeaponScriptableObject[] resultArray;
     Canvas canvas;
-
     bool isWeapons = true;
-
-
-   
 
     void Awake()
     {
-        ResetWeaponLevels();
         canvas = GetComponent<Canvas>();
     }
 
@@ -73,31 +65,29 @@ public class SkillsWeaponsManager : MonoBehaviour
             for (int i = 0; i < imagesNoWeapons.Length; i++)
             {
                 emptySuggestedImages[i].sprite = imagesNoWeapons[i];
-
             }
         }
-           
-            int availableButtons = 0;
-            for (int i = 0; i < buttons.Length; i++)
+
+        int availableButtons = 0;
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (emptySuggestedImages[i].sprite == null)
             {
-                if (emptySuggestedImages[i].sprite == null)
+                if (buttons[i] != null)
                 {
-                    if (buttons[i] != null)
-                    {
-                        buttons[i].gameObject.SetActive(false);
-                    }
-                }
-                else
-                {
-                    if (buttons[i] != null)
-                    {
-                        buttons[i].gameObject.SetActive(true);
-                        availableButtons += 1;
-                    }
+                    buttons[i].gameObject.SetActive(false);
                 }
             }
+            else
+            {
+                if (buttons[i] != null)
+                {
+                    buttons[i].gameObject.SetActive(true);
+                    availableButtons += 1;
+                }
+            }
+        }
         groupButtons.sizeDelta = new Vector2(availableButtons * 210f + (availableButtons <= 1 ? 0f : (availableButtons - 1) * 10f), groupButtons.sizeDelta.y);
-
         canvas.enabled = true;
     }
     public void OnButtonClick(Image image)
@@ -106,7 +96,7 @@ public class SkillsWeaponsManager : MonoBehaviour
         {
             int index = 0;
 
-            for (int i = 0; i < weapons.Length; i++)
+            for (int i = 0; i < weapons.Count; i++)
             {
                 if (weapons[i].prefab.GetComponent<SpriteRenderer>().sprite.name == image.sprite.name)
                 {
@@ -145,14 +135,13 @@ public class SkillsWeaponsManager : MonoBehaviour
                     emptyImages[i].sprite = currentSprite;
                     break;
                 }
-
             }
-        } else
+        }
+        else
         {
             PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
             if (image.sprite.name == "heart")
             {
-                
                 playerHealth.healthMax += 2;
             }
             if (image.sprite.name == "food")
@@ -160,28 +149,16 @@ public class SkillsWeaponsManager : MonoBehaviour
                 playerHealth.Heal(5);
             }
         }
-           
-
-            CountExperience countExperience = FindObjectOfType<CountExperience>();
-            if (countExperience.expCount >= countExperience.expMax)
-            {
-                countExperience.AgainUpdateExpCount();
-            }
-            else
-            {
-                canvas.enabled = false;
-                Time.timeScale = 1;
-            }
-      
-    }
-    private void ResetWeaponLevels()
-    {
-        foreach (var weapon in weapons)
+        CountExperience countExperience = FindObjectOfType<CountExperience>();
+        if (countExperience.expCount >= countExperience.expMax)
         {
-            weapon.level = 0;
+            countExperience.AgainUpdateExpCount();
+        }
+        else
+        {
+            canvas.enabled = false;
+            Time.timeScale = 1;
         }
     }
-
-
 }
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bubble Weapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 4617772483547746003, guid: 28f819b3460532347ad1818fb40a6352, type: 3}
-  damage: 1
+  damage: 0.5
   cooldown: 6
   speed: 0
   pierce: 0
-  level: 9
-  index: 2
+  level: 0
+  duration: 2

@@ -3,15 +3,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     protected Vector3 direction;
-    public float destroyAfterSec;
-    public WeaponScriptableObject weaponData;
     int currentPierce;
-
+    [HideInInspector]
+    public WeaponScriptableObject weaponData;
 
     protected virtual void Start()
     {
         currentPierce = weaponData.pierce;
-        Destroy(gameObject, destroyAfterSec);
+        Destroy(gameObject, weaponData.duration);
     }
 
     public void DirectionChecker(Vector3 dir)
@@ -24,7 +23,7 @@ public class Projectile : MonoBehaviour
         Vector3 scale = transform.localScale;
         Vector3 rotation = transform.rotation.eulerAngles;
 
-        if (dirX < 0 &&  dirY == 0) //left
+        if (dirX < 0 && dirY == 0) //left
         {
             scale.x = scale.x * -1;
             scale.y = scale.y * -1;
@@ -61,12 +60,9 @@ public class Projectile : MonoBehaviour
             scale.y = scale.y * -1;
             rotation.z = 0f;
         }
-
-
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
     }
-
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
@@ -86,6 +82,4 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
 }

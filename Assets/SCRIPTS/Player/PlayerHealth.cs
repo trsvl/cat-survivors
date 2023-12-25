@@ -19,10 +19,14 @@ public class PlayerHealth : MonoBehaviour
     public float damageInterval;
 
     List<GameObject> markedEnemies;
+
+    RestartManager restartManager;
     void Start()
     {
         markedEnemies = new List<GameObject>();
         health = healthMax;
+
+        restartManager = FindObjectOfType<RestartManager>();
     }
     void FixedUpdate()
     {
@@ -58,6 +62,11 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         healthBar.fillAmount = health / 10f;
+
+        if (health <= 0)
+        {
+            restartManager.EnableRestartCanva();
+        }
     }
     public void Heal(float heal)
     {

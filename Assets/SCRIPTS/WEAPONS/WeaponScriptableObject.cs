@@ -11,4 +11,5 @@ public class WeaponScriptableObject : ScriptableObject
     public float speed;
     public int pierce;
     public int level;
+    public float duration;
 }
