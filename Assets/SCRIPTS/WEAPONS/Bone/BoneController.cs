@@ -9,7 +9,6 @@ public class BoneController : WeaponController
         TriggerNTimes(3, 3, 0.2f);
         TriggerNTimes(4, 4, 0.2f);
         TriggerNTimes(5, 5, 0.2f);
-        nextTrigger = true;
     }
     protected override void Attack()
     {

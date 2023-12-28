@@ -15,11 +15,10 @@ public class PotatoController : WeaponController
     protected override void Update()
     {
         base.Update();
-        TriggerNTimes(2, 2, 0.2f);
-        TriggerNTimes(3, 2, 0.2f);
-        TriggerNTimes(4, 4, 0.2f);
-        TriggerNTimes(5, 5, 0.2f);
-        nextTrigger = true;
+        TriggerNTimes(2, 2, 0.4f);
+        TriggerNTimes(3, 2, 0.4f);
+        TriggerNTimes(4, 3, 0.3f);
+        TriggerNTimes(5, 4, 0.3f);
     }
     protected override void Attack()
     {
@@ -31,6 +30,7 @@ public class PotatoController : WeaponController
             ModifyData(lvl: 5, damage: 2f, pierce: 3, cooldown: 2f);
         }
         base.Attack();
+
         GameObject potato = Instantiate(weaponData.prefab);
         potato.transform.position = transform.position;
         potato.GetComponent<PotatoProjectile>().DirectionChecker(charMovement.lastVector);

@@ -12,8 +12,6 @@ public class WeaponController : MonoBehaviour
     public int count = 0;
     private SkillsWeaponsManager weaponsManager;
     [HideInInspector]
-    public bool nextTrigger = false;
-    [HideInInspector]
     public float timer = 0f;
     protected PlayerMovement charMovement;
     protected virtual void Awake()
@@ -63,15 +61,14 @@ public class WeaponController : MonoBehaviour
     }
     protected virtual void TriggerNTimes(int lvl, int n, float time)
     {
-        if (weaponData.level == lvl && nextTrigger)
+        if (weaponData.level == lvl && count < n)
         {
             timer += Time.deltaTime;
 
-            if (timer >= time && count < n)
+            if (timer >= time)
             {
-                Attack();
                 timer = 0f;
-                nextTrigger = false;
+                Attack();
             }
         }
     }

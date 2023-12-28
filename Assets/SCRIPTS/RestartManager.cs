@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RestartManager : MonoBehaviour
 {
     Canvas canvas;
+    public Button activeButton;
 
     void Start()
     {
         canvas = GetComponent<Canvas>();
+        activeButton.Select();
     }
 
     public void RestartClick()

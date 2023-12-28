@@ -104,10 +104,10 @@ public class Spawner : MonoBehaviour
                     }
 
                     //Spawn the enemies in random position close to player
-                   // Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
+                    Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
 
-                    Vector2 spawnPosition = new Vector2(player.transform.position.x + Random.Range(-10f,10f), player.transform.position.y + Random.Range(-10f, 10f));
-                    Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
+                    //Vector2 spawnPosition = new Vector2(player.transform.position.x + Random.Range(-10f,10f), player.transform.position.y + Random.Range(-10f, 10f));
+                    //Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
 
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63b54e66ec6bcaa4cb2b63c8124569ac, type: 3}
-  m_Name: SmallCat
+  m_Name: Enemy1
   m_EditorClassIdentifier: 
   prefab: {fileID: 5916292347922115300, guid: 521bbb1fe7d3c0f45b153e7fa7ae5afb, type: 3}
   damage: 1
-  health: 1
+  health: 2
   moveSpeed: 2
   despawnDistance: 10
   expPrefab: {fileID: 700625338170453215, guid: a7d7e107a4efe714390d62d7620e4d0f, type: 3}

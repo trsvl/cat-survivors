@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class CountExperience : MonoBehaviour
 {
     public int expCount = 0;
-    public int expMax = 1;
+    public int expMax = 6;
     public Text counterText;
 
     void Start()
@@ -18,7 +18,7 @@ public class CountExperience : MonoBehaviour
         if (expCount >= expMax)
         {
             expCount -= expMax;
-           // expMax += 2;
+            //expMax += 2;
             CountLevel lvl = FindObjectOfType<CountLevel>();
 
             if (lvl != null)
@@ -37,7 +37,7 @@ public class CountExperience : MonoBehaviour
         if (expCount >= expMax)
         {
             expCount -= expMax;
-            // expMax += 2;
+            //expMax += 2;
             CountLevel lvl = FindObjectOfType<CountLevel>();
 
             if (lvl != null)

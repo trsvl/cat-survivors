@@ -19,7 +19,6 @@ public class SwordController : WeaponController
         TriggerNTimes(3, 2, 0.3f);
         TriggerNTimes(4, 3, 0.3f);
         TriggerNTimes(5, 3, 0.3f);
-        nextTrigger = true;
     }
     protected override void Attack()
     {

@@ -22,6 +22,7 @@ public class SkillsWeaponsManager : MonoBehaviour
     void Awake()
     {
         canvas = GetComponent<Canvas>();
+        buttons[0].Select();
     }
 
     public void FillImagesWithRandomSprites()
