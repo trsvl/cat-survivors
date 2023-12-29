@@ -18,16 +18,18 @@ public class SkillsWeaponsManager : MonoBehaviour
     WeaponScriptableObject[] resultArray;
     Canvas canvas;
     bool isWeapons = true;
+    bool isFirstSelect = true;
+    bool isSelectedFirstButton = false;
 
     void Awake()
     {
         canvas = GetComponent<Canvas>();
-        buttons[0].Select();
     }
-
     public void FillImagesWithRandomSprites()
     {
         Time.timeScale = 0;
+
+       
 
         if (isWeapons)
         {
@@ -88,6 +90,18 @@ public class SkillsWeaponsManager : MonoBehaviour
                 }
             }
         }
+
+        if (isFirstSelect)
+        {
+            isFirstSelect = false;
+            buttons[0].Select();
+        }
+        if (emptySuggestedImages[2].sprite == null && !isSelectedFirstButton)
+        {
+            isSelectedFirstButton = true;
+            buttons[0].Select();
+        }
+
         groupButtons.sizeDelta = new Vector2(availableButtons * 210f + (availableButtons <= 1 ? 0f : (availableButtons - 1) * 10f), groupButtons.sizeDelta.y);
         canvas.enabled = true;
     }

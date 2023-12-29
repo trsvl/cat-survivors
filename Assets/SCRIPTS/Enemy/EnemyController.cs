@@ -62,8 +62,8 @@ public class EnemyController : MonoBehaviour
         {
             Instantiate(enemy.expPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            Spawner es = FindObjectOfType<Spawner>();
-            es.OnEnemyKilled();
+            Spawner spawner = FindObjectOfType<Spawner>();
+            spawner.OnEnemyKilled();
         }
         else
         {
@@ -74,8 +74,8 @@ public class EnemyController : MonoBehaviour
 
     void ReturnEnemy()
     {
-        Spawner es = FindObjectOfType<Spawner>();
-        transform.position = player.position + es.relativeSpawnPoints[Random.Range(0, es.relativeSpawnPoints.Count)].position;
+        Spawner spawner = FindObjectOfType<Spawner>();
+        transform.position = player.position + spawner.relativeSpawnPoints[Random.Range(0, spawner.relativeSpawnPoints.Count)].position;
     }
     void ChangeDir()
     {

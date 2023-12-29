@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         CalculateWaveQuota();
-        // SpawnEnemies();
+        //SpawnEnemies();
     }
 
     private void Update()
@@ -103,9 +103,9 @@ public class Spawner : MonoBehaviour
                         return;
                     }
 
+                    int randomIndex = Random.Range(0, relativeSpawnPoints.Count);
+                    Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[randomIndex].position, Quaternion.identity);
                     //Spawn the enemies in random position close to player
-                    Instantiate(enemyGroup.enemyPrefab, player.position + relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
-
                     //Vector2 spawnPosition = new Vector2(player.transform.position.x + Random.Range(-10f,10f), player.transform.position.y + Random.Range(-10f, 10f));
                     //Instantiate(enemyGroup.enemyPrefab, spawnPosition, Quaternion.identity);
 
