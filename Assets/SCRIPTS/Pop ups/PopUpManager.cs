@@ -1,32 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-public class RestartManager : MonoBehaviour
+public class PopUpManager : MonoBehaviour
 {
-    Canvas canvas;
+    [HideInInspector] public Canvas canvas;
     public Button activeButton;
-
     void Start()
     {
         canvas = GetComponent<Canvas>();
-        activeButton.Select();
     }
-
-    public void RestartClick()
+    public virtual void FirstButtonClick()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
         canvas.enabled = false;
     }
-    public void MainMenuClick(string sceneName)
+    public virtual void ExitClick()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1;
         canvas.enabled = false;
     }
-    public void EnableRestartCanva()
+    public virtual void EnableCanva()
     {
+        activeButton.Select();
         Time.timeScale = 0;
         canvas.enabled = true;
     }

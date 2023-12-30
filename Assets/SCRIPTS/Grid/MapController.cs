@@ -38,70 +38,46 @@ public class MapController : MonoBehaviour
         {
             return;
         }
-        if (playerMovement.moveDir.x > 0 || playerMovement.moveDir.y == 0) //right
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Right").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x < 0 || playerMovement.moveDir.y == 0) //left
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Left").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x == 0 || playerMovement.moveDir.y > 0) //up
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Up").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Up").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x == 0 && playerMovement.moveDir.y < 0) //down
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Down").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Down").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x > 0 || playerMovement.moveDir.y > 0) //right up
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right up").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Right up").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x > 0 || playerMovement.moveDir.y < 0) //right down
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right down").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Right down").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x < 0 || playerMovement.moveDir.y > 0) //left up
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left up").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Left up").position;
                 SpawnChunk();
             }
-        }
-        if (playerMovement.moveDir.x < 0 || playerMovement.moveDir.y < 0) //left down
-        {
             if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left down").position, checkerRadius, mask))
             {
                 noPos = currentChunk.transform.Find("Left down").position;
                 SpawnChunk();
             }
-        }
     }
 
     void SpawnChunk()

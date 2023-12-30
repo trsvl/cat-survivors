@@ -5,17 +5,23 @@ public class CountEnemies : MonoBehaviour
 {
     Text counterText;
     Spawner spawner;
+    int lastKnownEnemiesAlive;
     void Start()
     {
         counterText = GetComponent<Text>();
         spawner = FindObjectOfType<Spawner>();
-        counterText.text = "Enemies alive: " + spawner.enemiesAlive;
+        lastKnownEnemiesAlive = spawner.enemiesAlive;
+        UpdateText();
     }
     private void Update()
     {
-        counterText.text = "Enemies alive: " + spawner.enemiesAlive;
+        if (lastKnownEnemiesAlive !=  spawner.enemiesAlive)
+        {
+            lastKnownEnemiesAlive = spawner.enemiesAlive;
+            UpdateText();
+        }
     }
-    public void UpdateEnemyCount(int amount)
+    public void UpdateText()
     {
         counterText.text = "Enemies alive: " + spawner.enemiesAlive;
     }

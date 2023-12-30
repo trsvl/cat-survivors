@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     Transform player;
     SpriteRenderer spriteRenderer;
     public EnemyScriptableObject enemy;
-    float localHealth;
+    protected float localHealth;
     bool isDamaged = false;
     Color originalColor;
     Animator animator;
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
         }
 
     }
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         localHealth -= damage;
 
