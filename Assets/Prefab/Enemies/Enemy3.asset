@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63b54e66ec6bcaa4cb2b63c8124569ac, type: 3}
-  m_Name: LastEnemy
+  m_Name: Enemy3
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 3
   health: 10
-  moveSpeed: 2
+  moveSpeed: 3
   despawnDistance: 20
-  expPrefab: {fileID: 700625338170453215, guid: 24b7fb8aac687744bae9c31455dfcbe0, type: 3}
+  expPrefab: {fileID: 700625338170453215, guid: 5a6bc98dff5139d48b32fe87bee48a9f, type: 3}

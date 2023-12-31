@@ -488,6 +488,14 @@ PrefabInstance:
       value: Exit Button
       objectReference: {fileID: 0}
     - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 703361651}
+    - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -3199,34 +3207,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - waveName: Enemy1
+  - waveName: Wave1
     enemyGroups:
     - enemyName: Enemy1
-      enemyCount: 10
+      enemyCount: 20
       spawnCount: 0
       enemyPrefab: {fileID: 4738273170311826204, guid: bb8666facb0f553469463dfe41dbf40c, type: 3}
     waveQuota: 0
     spawnInterval: 4
     spawnCount: 0
-  - waveName: Enemy2
+  - waveName: Wave2
     enemyGroups:
-    - enemyName: Enemy2
+    - enemyName: Enemy1
       enemyCount: 5
       spawnCount: 0
-      enemyPrefab: {fileID: 7340301294759272705, guid: 7249a76fc5b351f44b0bb32a9a2c348b, type: 3}
+      enemyPrefab: {fileID: 4738273170311826204, guid: bb8666facb0f553469463dfe41dbf40c, type: 3}
     - enemyName: Enemy1
       enemyCount: 15
       spawnCount: 0
       enemyPrefab: {fileID: 4738273170311826204, guid: bb8666facb0f553469463dfe41dbf40c, type: 3}
-    waveQuota: 0
-    spawnInterval: 3
-    spawnCount: 0
-  - waveName: Last Wave
-    enemyGroups:
     - enemyName: Enemy2
       enemyCount: 5
       spawnCount: 0
       enemyPrefab: {fileID: 7340301294759272705, guid: 7249a76fc5b351f44b0bb32a9a2c348b, type: 3}
+    waveQuota: 0
+    spawnInterval: 4
+    spawnCount: 0
+  - waveName: Wave3
+    enemyGroups:
+    - enemyName: Enemy2
+      enemyCount: 15
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 7249a76fc5b351f44b0bb32a9a2c348b, type: 3}
+    - enemyName: Enemy1
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 4738273170311826204, guid: bb8666facb0f553469463dfe41dbf40c, type: 3}
+    - enemyName: Enemy3
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 968e46619878ccc47bc45dfc0d917244, type: 3}
+    - enemyName: Fast
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 41d5b5abe4abe9d4ca995f398458cc4c, type: 3}
+    waveQuota: 0
+    spawnInterval: 4
+    spawnCount: 0
+  - waveName: Wave4
+    enemyGroups:
+    - enemyName: Enemy2
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 7249a76fc5b351f44b0bb32a9a2c348b, type: 3}
+    - enemyName: Enemy3
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 968e46619878ccc47bc45dfc0d917244, type: 3}
+    - enemyName: Fast
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 968e46619878ccc47bc45dfc0d917244, type: 3}
+    - enemyName: Fast
+      enemyCount: 5
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 968e46619878ccc47bc45dfc0d917244, type: 3}
+    - enemyName: Enemy4
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 6c2a52d43728bb741ba36750303f2c1a, type: 3}
+    waveQuota: 0
+    spawnInterval: 4
+    spawnCount: 0
+  - waveName: Wave5
+    enemyGroups:
+    - enemyName: Enemy4
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 6c2a52d43728bb741ba36750303f2c1a, type: 3}
+    - enemyName: Enemy3
+      enemyCount: 30
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 968e46619878ccc47bc45dfc0d917244, type: 3}
+    - enemyName: Enemy2
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 7249a76fc5b351f44b0bb32a9a2c348b, type: 3}
+    - enemyName: Fast
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 41d5b5abe4abe9d4ca995f398458cc4c, type: 3}
+    - enemyName: Fast
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 7340301294759272705, guid: 41d5b5abe4abe9d4ca995f398458cc4c, type: 3}
+    waveQuota: 0
+    spawnInterval: 4
+    spawnCount: 0
+  - waveName: Last Wave
+    enemyGroups:
     - enemyName: LastBoss
       enemyCount: 1
       spawnCount: 0
@@ -5332,6 +5411,14 @@ PrefabInstance:
       value: New Game Button
       objectReference: {fileID: 0}
     - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 2117434543}
+    - target: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -5600,7 +5687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be70a69ad9242cc40a90bd25461df731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expMax: 6
+  expMax: 4
   expCount: 0
 --- !u!114 &1945688356
 MonoBehaviour:
@@ -5975,6 +6062,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2117434543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4289914996019862373, guid: 550ee070b05690a489fdf0118f468620, type: 3}
+  m_PrefabInstance: {fileID: 119057645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142913871
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,7 +6171,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -6166,7 +6264,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1627836402, guid: f7b9b0efbf0b7754dad2d6ad82f03e8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
