@@ -12,7 +12,7 @@ public class LastEnemy : EnemyController
         if (localHealth <= 0)
         {
             newGameManager = FindObjectOfType<NewGameManager>();
-            newGameManager.EnableCanva();
+            newGameManager.EnableCanvas();
         }
     }
 }

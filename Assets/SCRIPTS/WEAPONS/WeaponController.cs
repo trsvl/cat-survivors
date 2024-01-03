@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using static SelectCatManager;
 
 public class WeaponController : MonoBehaviour
 {
@@ -14,6 +16,10 @@ public class WeaponController : MonoBehaviour
     [HideInInspector]
     public float timer = 0f;
     protected PlayerMovement charMovement;
+
+    protected string catName;
+    protected List<string> catNames;
+
     protected virtual void Awake()
     {
         if (weapon != null)
@@ -25,6 +31,9 @@ public class WeaponController : MonoBehaviour
     }
     protected virtual void Start()
     {
+        catName = PassData.catName;
+        catNames = PassData.catNames;
+
         charMovement = FindObjectOfType<PlayerMovement>();
         currentCooldown = weaponData.cooldown;
         prevLvl = weaponData.level;
@@ -51,13 +60,13 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void ModifyData(int lvl, float? damage = null, int? pierce = null, float? cooldown = null, float? duration = null)
     {
-            if (weaponData.level == lvl)
-            {
-                weaponData.damage = damage ?? weaponData.damage;
-                weaponData.pierce = pierce ?? weaponData.pierce;
-                weaponData.cooldown = cooldown ?? weaponData.cooldown;
-                weaponData.duration = duration ?? weaponData.duration;
-            }
+        if (weaponData.level == lvl)
+        {
+            weaponData.damage = damage ?? weaponData.damage;
+            weaponData.pierce = pierce ?? weaponData.pierce;
+            weaponData.cooldown = cooldown ?? weaponData.cooldown;
+            weaponData.duration = duration ?? weaponData.duration;
+        }
     }
     protected virtual void TriggerNTimes(int lvl, int n, float time)
     {

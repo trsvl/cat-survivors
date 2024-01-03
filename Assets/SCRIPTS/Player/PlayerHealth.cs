@@ -65,7 +65,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            restartManager.EnableCanva();
+            restartManager.EnableCanvas();
         }
     }
     public void Heal(float heal)

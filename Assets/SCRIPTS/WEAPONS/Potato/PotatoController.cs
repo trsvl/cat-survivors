@@ -5,11 +5,12 @@ public class PotatoController : WeaponController
     protected override void Start()
     {
         base.Start();
-        // BASED ON HERO
-        weaponData.level += 1;
-        SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
-        skillsWeaponsManager.emptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
-        //
+        if (catName == catNames[0])
+        {
+            weaponData.level += 1;
+            SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
+            skillsWeaponsManager.emptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 
     protected override void Update()

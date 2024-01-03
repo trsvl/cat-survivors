@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PopUpManager : MonoBehaviour
 {
-    [HideInInspector] public Canvas canvas;
-    public Button activeButton;
-    void Start()
+    protected Canvas canvas;
+    [SerializeField] protected Button activeButton;
+    protected virtual void Start()
     {
         canvas = GetComponent<Canvas>();
     }
@@ -21,7 +21,7 @@ public class PopUpManager : MonoBehaviour
         Time.timeScale = 1;
         canvas.enabled = false;
     }
-    public virtual void EnableCanva()
+    public virtual void EnableCanvas()
     {
         activeButton.Select();
         Time.timeScale = 0;

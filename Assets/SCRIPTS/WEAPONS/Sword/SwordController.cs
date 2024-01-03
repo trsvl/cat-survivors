@@ -6,11 +6,18 @@ public class SwordController : WeaponController
     [HideInInspector]
     public float dirXFirstSword;
     PlayerMovement playerMovement;
-    
+
     protected override void Start()
     {
         base.Start();
         playerMovement = FindObjectOfType<PlayerMovement>();
+
+        if (catName == catNames[3])
+        {
+            weaponData.level += 1;
+            SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
+            skillsWeaponsManager.emptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
+        }
     }
     protected override void Update()
     {
