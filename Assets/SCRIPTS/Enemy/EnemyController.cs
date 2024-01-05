@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     Transform player;
     SpriteRenderer spriteRenderer;
-    public EnemyScriptableObject enemy;
+    [SerializeField] private EnemyScriptableObject enemy;
+    public EnemyScriptableObject Enemy
+    {
+        get { return enemy; }
+    }
     protected float localHealth;
     bool isDamaged = false;
     Color originalColor;
     Animator animator;
 
     float damageTimer = 0f;
-    float damageDuration = 0.2f;
+    const float damageDuration = 0.2f;
     protected virtual void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
@@ -38,10 +39,10 @@ public class EnemyController : MonoBehaviour
             {
                 spriteRenderer.color = originalColor;
                 isDamaged = false;
-                damageTimer = 0f; 
+                damageTimer = 0f;
             }
         }
-         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.moveSpeed * Time.deltaTime);
 
         if (transform.position.x != 0 || transform.position.y != 0)
         {
@@ -52,7 +53,6 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("Move", false);
         }
-
     }
     public virtual void TakeDamage(float damage)
     {
@@ -71,11 +71,10 @@ public class EnemyController : MonoBehaviour
             isDamaged = true;
         }
     }
-
     void ReturnEnemy()
     {
         Spawner spawner = FindObjectOfType<Spawner>();
-        transform.position = player.position + spawner.relativeSpawnPoints[Random.Range(0, spawner.relativeSpawnPoints.Count)].position;
+        transform.position = player.position + spawner.RelativeSpawnPoints[Random.Range(0, spawner.RelativeSpawnPoints.Count)].position;
     }
     void ChangeDir()
     {
@@ -90,5 +89,4 @@ public class EnemyController : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
-
 }

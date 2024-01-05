@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 public class CountExperience : MonoBehaviour
 {
-    public int expMax = 6;
-    [HideInInspector] public int expCount = 0;
+    [SerializeField] private int expMax = 6;
+    public int ExpMax { get { return expMax; } }
+    private int expCount = 0;
+    public int ExpCount { get { return expCount; } }
     Text counterText;
 
     void Start()
@@ -15,6 +17,7 @@ public class CountExperience : MonoBehaviour
     public void UpdateExpCount(int amount)
     {
         expCount += amount;
+
         if (expCount >= expMax)
         {
             expCount -= expMax;
@@ -29,8 +32,6 @@ public class CountExperience : MonoBehaviour
             skillsWeaponsManager.FillImagesWithRandomSprites();
         }
         counterText.text = "Exp: " + expCount + "/" + expMax;
-
-        
     }
     public void AgainUpdateExpCount()
     {
@@ -46,9 +47,7 @@ public class CountExperience : MonoBehaviour
             }
         }
         counterText.text = "Exp: " + expCount + "/" + expMax;
-
         SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
         skillsWeaponsManager.FillImagesWithRandomSprites();
     }
-
 }

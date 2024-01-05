@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-
-public class LastEnemy : EnemyController
+public class LastEnemyController : EnemyController
 {
     NewGameManager newGameManager;
     public override void TakeDamage(float damage)

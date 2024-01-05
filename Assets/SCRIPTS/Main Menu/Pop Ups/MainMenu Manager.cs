@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : PopUpManager
 {
     SelectCatManager selectCatManager;
+
     protected override void Start()
     {
         base.Start();

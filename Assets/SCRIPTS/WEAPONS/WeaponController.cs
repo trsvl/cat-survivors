@@ -4,19 +4,15 @@ using static SelectCatManager;
 
 public class WeaponController : MonoBehaviour
 {
-    public WeaponScriptableObject weapon;
-    [HideInInspector]
-    public WeaponScriptableObject weaponData;
+    [SerializeField] private WeaponScriptableObject weapon;
+    protected WeaponScriptableObject weaponData;
+    public WeaponScriptableObject WeaponData { get { return weaponData; } }
     float currentCooldown;
-    [HideInInspector]
-    public int prevLvl;
-    [HideInInspector]
-    public int count = 0;
+    protected int prevLvl;
+    protected int count = 0;
     private SkillsWeaponsManager weaponsManager;
-    [HideInInspector]
-    public float timer = 0f;
+    float timer = 0f;
     protected PlayerMovement charMovement;
-
     protected string catName;
     protected List<string> catNames;
 
@@ -38,8 +34,6 @@ public class WeaponController : MonoBehaviour
         currentCooldown = weaponData.cooldown;
         prevLvl = weaponData.level;
     }
-
-
     protected virtual void Update()
     {
         if (weaponData.level > 0)
@@ -52,12 +46,10 @@ public class WeaponController : MonoBehaviour
             }
         }
     }
-
     protected virtual void Attack()
     {
         currentCooldown = weaponData.cooldown;
     }
-
     protected virtual void ModifyData(int lvl, float? damage = null, int? pierce = null, float? cooldown = null, float? duration = null)
     {
         if (weaponData.level == lvl)

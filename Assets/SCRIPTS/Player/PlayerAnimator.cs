@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -14,11 +12,9 @@ public class PlayerAnimator : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     void Update()
     {
-
-        if (playerMovement.moveDir.x != 0 || playerMovement.moveDir.y != 0)
+        if (playerMovement.MoveDir.x != 0 || playerMovement.MoveDir.y != 0)
         {
             animator.SetBool("Move", true);
             ChangeDir();
@@ -28,10 +24,9 @@ public class PlayerAnimator : MonoBehaviour
             animator.SetBool("Move", false);
         }
     }
-
-     void ChangeDir()
+    void ChangeDir()
     {
-        if (playerMovement.lastHorizontalVector < 0)
+        if (playerMovement.LastHorizontalVector < 0)
         {
             spriteRenderer.flipX = false;
         }

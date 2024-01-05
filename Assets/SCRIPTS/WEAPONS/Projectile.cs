@@ -4,15 +4,13 @@ public class Projectile : MonoBehaviour
 {
     protected Vector3 direction;
     int currentPierce;
-    [HideInInspector]
-    public WeaponScriptableObject weaponData;
+    protected WeaponScriptableObject weaponData;
 
     protected virtual void Start()
     {
         currentPierce = weaponData.pierce;
         Destroy(gameObject, weaponData.duration);
     }
-
     public void DirectionChecker(Vector3 dir)
     {
         direction = dir;
@@ -63,7 +61,6 @@ public class Projectile : MonoBehaviour
         transform.localScale = scale;
         transform.rotation = Quaternion.Euler(rotation);
     }
-
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy"))
@@ -73,7 +70,6 @@ public class Projectile : MonoBehaviour
             ReducePierce();
         }
     }
-
     void ReducePierce()
     {
         currentPierce--;

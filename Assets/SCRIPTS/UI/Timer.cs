@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Timer : MonoBehaviour
 {
     Text timerText;
     float timer;
     float currentTime;
+
     void Start()
     {
         timerText = GetComponent<Text>();
     }
-
     void Update()
     {
         timer += Time.deltaTime;
@@ -24,7 +25,6 @@ public class Timer : MonoBehaviour
         currentTime++;
         float minutes = Mathf.FloorToInt(currentTime / 60);
         float seconds = Mathf.FloorToInt(currentTime % 60);
-
         timerText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
     }
 }

@@ -1,29 +1,25 @@
-using System.Collections;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BubbleMelee : Melee
 {
     PlayerMovement playerMovement;
-
     List<GameObject> markedEnemies;
-
-    float damageInterval = 1f;
+    const float damageInterval = 1f;
     float damageTimer = 0f;
-
     BubbleController controller;
 
-
-    private void Awake()
+    void Awake()
     {
         controller = FindObjectOfType<BubbleController>();
-        weaponData = controller.weaponData;
+        weaponData = controller.WeaponData;
     }
     protected override void Start()
     {
         base.Start();
+
         markedEnemies = new List<GameObject>();
-        playerMovement = FindObjectOfType <PlayerMovement>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
         ChangeLocalScale(2, 1.2f);
         ChangeLocalScale(3, 1.5f);
         ChangeLocalScale(4, 2f);
@@ -36,11 +32,9 @@ public class BubbleMelee : Melee
             transform.localScale = transform.localScale * value;
         }
     }
-
     void Update()
     {
         transform.position = playerMovement.transform.position;
-
         damageTimer += Time.deltaTime;
 
         if (damageTimer >= damageInterval)
@@ -49,7 +43,6 @@ public class BubbleMelee : Melee
             damageTimer = 0f;
         }
     }
-
     protected override void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Enemy") && !markedEnemies.Contains(col.gameObject))
@@ -59,7 +52,6 @@ public class BubbleMelee : Melee
             enemy.TakeDamage(weaponData.damage);
         }
     }
-
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Enemy") && markedEnemies.Contains(col.gameObject))
@@ -67,13 +59,20 @@ public class BubbleMelee : Melee
             markedEnemies.Remove(col.gameObject);
         }
     }
-
     private void DamageEnemiesInsideBubble()
     {
         for (int i = markedEnemies.Count - 1; i >= 0; i--)
         {
             var enemy = markedEnemies[i];
-            enemy.GetComponent<EnemyController>().TakeDamage(weaponData.damage);
+            
+            if (enemy != null)
+            {
+                enemy.GetComponent<EnemyController>().TakeDamage(weaponData.damage);
+            }
+            else
+            {
+                markedEnemies.RemoveAt(i);
+            }
         }
     }
 }

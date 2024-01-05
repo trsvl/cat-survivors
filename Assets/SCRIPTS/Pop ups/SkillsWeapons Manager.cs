@@ -4,32 +4,31 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable]
 public class SkillsWeaponsManager : MonoBehaviour
 {
-    public Image[] emptyImages;
-    public Image[] emptyImagesBG;
-    public Image[] emptySuggestedImages;
+    [SerializeField] private Image[] emptyImagesBG;
+    [SerializeField] private Image[] emptySuggestedImages;
+    [SerializeField] private Button[] buttons;
+    [SerializeField] private RectTransform groupButtons;
+    [SerializeField] private Sprite[] imagesNoWeapons;
+    [SerializeField] private Image[] emptyImages;
+    public Image[] EmptyImages { get { return emptyImages; } set { emptyImages = value; } }
     [HideInInspector]
     public List<WeaponScriptableObject> weapons;
-    public Button[] buttons;
-    public RectTransform groupButtons;
-    public Sprite[] imagesNoWeapons;
+    bool isWeapons = true;
     WeaponScriptableObject[] resultArray;
     Canvas canvas;
-    bool isWeapons = true;
-    bool isFirstSelect = true;
-    bool isSelectedFirstButton = false;
+    PauseManager pauseManager;
 
     void Awake()
     {
         canvas = GetComponent<Canvas>();
+        pauseManager = FindObjectOfType<PauseManager>();
     }
     public void FillImagesWithRandomSprites()
     {
         Time.timeScale = 0;
-
-       
+        pauseManager.IsAllowedPause = false;
 
         if (isWeapons)
         {
@@ -37,9 +36,7 @@ public class SkillsWeaponsManager : MonoBehaviour
             {
                 emptySuggestedImages[i].sprite = null;
             }
-
             List<WeaponScriptableObject> filteredWeapons = weapons.Where(x => x.level < 5).ToList();
-
             WeaponScriptableObject[] shuffledWeaponsArray = filteredWeapons.OrderBy(x => Guid.NewGuid()).ToArray();
             int len = shuffledWeaponsArray.Length;
 
@@ -70,8 +67,8 @@ public class SkillsWeaponsManager : MonoBehaviour
                 emptySuggestedImages[i].sprite = imagesNoWeapons[i];
             }
         }
-
         int availableButtons = 0;
+
         for (int i = 0; i < buttons.Length; i++)
         {
             if (emptySuggestedImages[i].sprite == null)
@@ -90,23 +87,14 @@ public class SkillsWeaponsManager : MonoBehaviour
                 }
             }
         }
-
-        if (isFirstSelect)
-        {
-            isFirstSelect = false;
-            buttons[0].Select();
-        }
-        if (emptySuggestedImages[2].sprite == null && !isSelectedFirstButton)
-        {
-            isSelectedFirstButton = true;
-            buttons[0].Select();
-        }
+        buttons[0].Select();
 
         groupButtons.sizeDelta = new Vector2(availableButtons * 210f + (availableButtons <= 1 ? 0f : (availableButtons - 1) * 10f), groupButtons.sizeDelta.y);
         canvas.enabled = true;
     }
     public void OnButtonClick(Image image)
     {
+        pauseManager.IsAllowedPause = true;
         if (isWeapons)
         {
             int index = 0;
@@ -142,7 +130,6 @@ public class SkillsWeaponsManager : MonoBehaviour
                     {
                         emptyImagesBG[i].color = new Color32(255, 204, 153, 255);
                     }
-
                     break;
                 }
                 else if (!emptyImages[i].sprite && emptyImages[i].sprite != currentSprite)
@@ -155,9 +142,10 @@ public class SkillsWeaponsManager : MonoBehaviour
         else
         {
             PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+
             if (image.sprite.name == "heart")
             {
-                playerHealth.healthMax += 2;
+                playerHealth.HealthMax += 2;
             }
             if (image.sprite.name == "food")
             {
@@ -165,7 +153,8 @@ public class SkillsWeaponsManager : MonoBehaviour
             }
         }
         CountExperience countExperience = FindObjectOfType<CountExperience>();
-        if (countExperience.expCount >= countExperience.expMax)
+
+        if (countExperience.ExpCount >= countExperience.ExpMax)
         {
             countExperience.AgainUpdateExpCount();
         }

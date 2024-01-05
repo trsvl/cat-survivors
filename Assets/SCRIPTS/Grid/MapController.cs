@@ -1,101 +1,69 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public List<GameObject> chunks;
-    public GameObject player;
-    public float checkerRadius;
+    [SerializeField] private List<GameObject> chunks;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float checkerRadius;
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private List<GameObject> spawnedChunks;
+    [SerializeField] private float maxDist;
+    [SerializeField] private float cdDuration;
+    [SerializeField] private GameObject currentChunk;
+    public GameObject CurrentChunk
+    {
+        get { return currentChunk; }
+        set { currentChunk = value; }
+    }
     Vector3 noPos;
-    public LayerMask mask;
-    PlayerMovement playerMovement;
-    public GameObject currentChunk;
-
-    public List<GameObject> spawnedChunks;
     GameObject latestChunk;
-    public float maxDist;
     float dist;
     float cd;
-    public float cdDuration;
-
-    
-    void Start()
-    {
-        playerMovement = FindObjectOfType<PlayerMovement>();
-    }
 
     void Update()
     {
         ChunkChecker();
         ChunkOptimizer();
     }
-    
+    void ChunkCheckerDir(string direction)
+    {
+        if (!Physics2D.OverlapCircle(currentChunk.transform.Find(direction).position, checkerRadius, mask))
+        {
+            noPos = currentChunk.transform.Find(direction).position;
+            SpawnChunk();
+        }
+    }
     void ChunkChecker()
     {
         if (!currentChunk)
         {
             return;
         }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Right").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Left").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Up").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Up").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Down").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Down").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right up").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Right up").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Right down").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Right down").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left up").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Left up").position;
-                SpawnChunk();
-            }
-            if (!Physics2D.OverlapCircle(currentChunk.transform.Find("Left down").position, checkerRadius, mask))
-            {
-                noPos = currentChunk.transform.Find("Left down").position;
-                SpawnChunk();
-            }
+        ChunkCheckerDir("Right");
+        ChunkCheckerDir("Left");
+        ChunkCheckerDir("Up");
+        ChunkCheckerDir("Down");
+        ChunkCheckerDir("Right up");
+        ChunkCheckerDir("Right down");
+        ChunkCheckerDir("Left up");
+        ChunkCheckerDir("Left down");
     }
-
     void SpawnChunk()
     {
         int random = Random.Range(0, chunks.Count);
         latestChunk = Instantiate(chunks[random], noPos, Quaternion.identity);
         spawnedChunks.Add(latestChunk);
     }
-
     void ChunkOptimizer()
     {
-
         cd -= Time.deltaTime;
 
         if (cd <= 0f)
         {
             cd = cdDuration;
-        } else
+        }
+        else
         {
             return;
         }

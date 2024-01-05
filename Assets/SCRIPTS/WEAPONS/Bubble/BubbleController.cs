@@ -1,16 +1,16 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BubbleController : WeaponController
 {
     protected override void Start()
     {
         base.Start();
+
         if (catName == catNames[1])
         {
             weaponData.level += 1;
             SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
-            skillsWeaponsManager.emptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
+            skillsWeaponsManager.EmptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
         }
     }
     protected override void Attack()

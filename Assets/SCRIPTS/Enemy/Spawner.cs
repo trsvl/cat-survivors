@@ -1,21 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [System.Serializable]
-    public class Wave
+    private class Wave
     {
         public string waveName;
-        public List <EnemyGroup> enemyGroups;
+        public List<EnemyGroup> enemyGroups;
         public int waveQuota; //total number of enemies to spawn in this wave
         public float spawnInterval;
         public int spawnCount; //already spawned
     }
 
     [System.Serializable]
-    public class EnemyGroup
+    private class EnemyGroup
     {
         public string enemyName;
         public int enemyCount; //number to spawn in this wave
@@ -23,19 +22,28 @@ public class Spawner : MonoBehaviour
         public GameObject enemyPrefab;
     }
 
-    public List<Wave> waves;
-    public int currentWaveCount;
+    [SerializeField] private List<Wave> waves;
+    [SerializeField] private int currentWaveCount;
 
     [Header("Spawner Attributes")]
     float spawnTimer; //when to spawn the next enemy
-    public int enemiesAlive;
-    public int maxEnemiesAllowed;
-    public bool maxEnemiesReached = false;
-    public float waveIntreval;
+    [SerializeField] private int enemiesAlive;
+    public int EnemiesAlive
+    {
+        get { return enemiesAlive; }
+    }
+    [SerializeField]
+    private int maxEnemiesAllowed;
+    [SerializeField] private bool maxEnemiesReached = false;
+    [SerializeField] private float waveIntreval;
     float waveTimer;
 
     [Header("Spawn Postitions")]
-    public List<Transform> relativeSpawnPoints;
+    [SerializeField] private List<Transform> relativeSpawnPoints;
+    public List<Transform> RelativeSpawnPoints
+    {
+        get { return relativeSpawnPoints; }
+    }
 
     Transform player;
 
@@ -43,14 +51,12 @@ public class Spawner : MonoBehaviour
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         CalculateWaveQuota();
-        //SpawnEnemies();
     }
-
     private void Update()
     {
         spawnTimer += Time.deltaTime;
         waveTimer += Time.deltaTime;
-       
+
         if ((waves[currentWaveCount].waveQuota == waves[currentWaveCount].spawnCount)
             || ((waves[currentWaveCount].waveQuota == waves[currentWaveCount].spawnCount) && enemiesAlive == 0)
             || (waveTimer >= waveIntreval))
@@ -65,7 +71,6 @@ public class Spawner : MonoBehaviour
             SpawnEnemies();
         }
     }
-
     void BeginNextWave()
     {
         if (currentWaveCount < waves.Count - 1)
@@ -74,7 +79,6 @@ public class Spawner : MonoBehaviour
             CalculateWaveQuota();
         }
     }
-
     void CalculateWaveQuota()
     {
         int currentWaveQuota = 0;
@@ -86,7 +90,6 @@ public class Spawner : MonoBehaviour
         waves[currentWaveCount].waveQuota = currentWaveQuota;
     }
     void SpawnEnemies()
-
     {
         //Check if the minimum number of enemies in the wave have been spawned
         if (waves[currentWaveCount].spawnCount < waves[currentWaveCount].waveQuota && !maxEnemiesReached)
@@ -110,17 +113,14 @@ public class Spawner : MonoBehaviour
                     waves[currentWaveCount].spawnCount++;
                     enemiesAlive++;
                 }
-
             }
         }
-
         //Reset the maxEnemies if enemies alive has dropped below the maximum amount
         if (enemiesAlive < maxEnemiesAllowed)
         {
             maxEnemiesReached = false;
         }
     }
-
     public void OnEnemyKilled()
     {
         enemiesAlive--;

@@ -23,6 +23,7 @@ public class SelectCatButtonHandler : MonoBehaviour, ISelectHandler, IDeselectHa
     TextMeshProUGUI text;
     Color defaultTextColor;
     Color selectedTextColor = new Color32(239, 186, 140, 255);
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -49,7 +50,6 @@ public class SelectCatButtonHandler : MonoBehaviour, ISelectHandler, IDeselectHa
         border.color = defaultBorderColor + new Color32(0, 0, 0, 100);
         text.color = selectedTextColor;
     }
-
     public void OnDeselect(BaseEventData eventData)
     {
         animator.SetBool("isActive", false);

@@ -4,10 +4,10 @@ public class PotatoProjectile : Projectile
 {
     PotatoController controller;
 
-    private void Awake()
+    void Awake()
     {
         controller = FindObjectOfType<PotatoController>();
-        weaponData = controller.weaponData;
+        weaponData = controller.WeaponData;
     }
     void Update()
     {

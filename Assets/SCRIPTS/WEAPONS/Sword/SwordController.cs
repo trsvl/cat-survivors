@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SwordController : WeaponController
 {
-    [HideInInspector]
-    public float dirXFirstSword;
+    private float dirXFirstSword;
+    public float DirXFirstSword { get { return dirXFirstSword; } }
     PlayerMovement playerMovement;
 
     protected override void Start()
@@ -16,7 +15,7 @@ public class SwordController : WeaponController
         {
             weaponData.level += 1;
             SkillsWeaponsManager skillsWeaponsManager = FindObjectOfType<SkillsWeaponsManager>();
-            skillsWeaponsManager.emptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
+            skillsWeaponsManager.EmptyImages[0].sprite = weaponData.prefab.GetComponent<SpriteRenderer>().sprite;
         }
     }
     protected override void Update()
@@ -30,9 +29,10 @@ public class SwordController : WeaponController
     protected override void Attack()
     {
         base.Attack();
+
         if (count == 0)
         {
-            dirXFirstSword = playerMovement.lastVector.x;
+            dirXFirstSword = playerMovement.LastVector.x;
         }
         if (prevLvl != weaponData.level)
         {
@@ -41,10 +41,8 @@ public class SwordController : WeaponController
             ModifyData(lvl: 4, damage: 1.5f, cooldown: 3.5f);
             ModifyData(lvl: 5, damage: 2f, cooldown: 3f);
         }
-
         GameObject sword = Instantiate(weaponData.prefab);
         sword.name = "sword" + count;
         count++;
     }
-    
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExpPickUp : MonoBehaviour
@@ -9,8 +7,7 @@ public class ExpPickUp : MonoBehaviour
         if (collision.gameObject.CompareTag("Experience"))
         {
             Experience exp = collision.gameObject.GetComponent<Experience>();
-                exp.PickUpExp(true);
+            exp.PickUpExp(true);
         }
     }
-
 }

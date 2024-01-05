@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +11,7 @@ public class SelectCatManager : PopUpManager
     private class Cat
     {
         public Button button;
-        public String name;
+        public string name;
         public Color color;
     }
     [SerializeField] private Cat[] cats;
@@ -40,9 +39,6 @@ public class SelectCatManager : PopUpManager
         }
         PassData.catNames = localList;
     }
-
-
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isOpenCanvas)

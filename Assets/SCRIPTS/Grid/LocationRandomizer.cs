@@ -1,17 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LocationRandomizer : MonoBehaviour
 {
-    public List<GameObject> locationSpawnPoints;
-    public List<GameObject> locationPrefabs;
+    [SerializeField] private List<GameObject> locationSpawnPoints;
+    [SerializeField] private List<GameObject> locationPrefabs;
 
     void Start()
     {
         SpawnLocations();
     }
-
     void SpawnLocations()
     {
         foreach (GameObject loc in locationSpawnPoints)

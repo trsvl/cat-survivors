@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Experience : MonoBehaviour
 {
-    public int numberExp;
+    [SerializeField] private int numberExp;
     public void PickUpExp(bool taken)
     {
-
         if (taken)
         {
             Destroy(gameObject);

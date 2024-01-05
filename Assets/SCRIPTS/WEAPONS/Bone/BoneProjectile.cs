@@ -6,14 +6,13 @@ public class BoneProjectile : Projectile
     PlayerMovement player;
     SpriteRenderer spriteRenderer;
     BoneController controller;
-
     float timer = 0f;
     float randomVelocityX;
 
-    private void Awake()
+    void Awake()
     {
         controller = FindObjectOfType<BoneController>();
-        weaponData = controller.weaponData;
+        weaponData = controller.WeaponData;
     }
     protected override void Start()
     {
@@ -45,16 +44,15 @@ public class BoneProjectile : Projectile
             transform.localScale = transform.localScale * value;
         }
     }
-
     private void Update()
     {
         timer += Time.deltaTime;
 
-        if (player.moveDir.y < 0)
+        if (player.MoveDir.y < 0)
         {
             rb.gravityScale = 2;
         }
-        if (player.moveDir.y > 0)
+        if (player.MoveDir.y > 0)
         {
             rb.gravityScale = 0;
         }

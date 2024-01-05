@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class SwordMelee : Melee
@@ -7,19 +6,18 @@ public class SwordMelee : Melee
     PlayerMovement playerMovement;
     SwordController controller;
     float dirX;
-    private void Awake()
+    void Awake()
     {
         controller = FindObjectOfType<SwordController>();
-        weaponData = controller.weaponData;
+        weaponData = controller.WeaponData;
     }
-
     protected override void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
         playerMovement = FindObjectOfType<PlayerMovement>();
 
-        dirX = controller.dirXFirstSword;
+        dirX = controller.DirXFirstSword;
 
         if (gameObject.name == "sword2")
         {
@@ -41,12 +39,11 @@ public class SwordMelee : Melee
             transform.localScale = transform.localScale * value;
         }
     }
-
     void Update()
     {
         if (gameObject.name == "sword0")
         {
-                transform.position = playerMovement.transform.position + new Vector3(dirX > 0 ? 1f : -1f, 0f, 0f);
+            transform.position = playerMovement.transform.position + new Vector3(dirX > 0 ? 1f : -1f, 0f, 0f);
         }
         if (gameObject.name == "sword1")
         {
@@ -69,7 +66,7 @@ public class SwordMelee : Melee
         }
         if (gameObject.name == "sword2")
         {
-                transform.position = playerMovement.transform.position + new Vector3(dirX > 0 ? -1f : 1f, 0f, 0f);
+            transform.position = playerMovement.transform.position + new Vector3(dirX > 0 ? -1f : 1f, 0f, 0f);
         }
     }
 }
